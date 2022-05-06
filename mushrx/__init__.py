@@ -2,13 +2,14 @@ from flask import Flask
 from flask import jsonify
 from flask_migrate import Migrate
 from flask_cors import CORS, cross_origin
+import os
 def create_app():
     app = Flask(__name__)
     CORS(app)
 
 
     # config
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Strawhat987@localhost:5432/mushrx'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('MY_SECRET')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -30,13 +31,16 @@ def create_app():
 
     from . import userpoint
     app.register_blueprint(userpoint.bp)
+
+    from . import userpolygons
+    app.register_blueprint(userpolygons.bp)
     # Initial Mushroom data
     # from . import data
     # app.register_blueprint(data.bp)
     
-    # from . import soildata
-    # from moreldata.soilstuff import facts
-    # @app.route('/soil')
-    # def index():
-    #     return jsonify(soildata.getHelp(facts['hours']))
+    from . import soildata
+    from . import soilstuff
+    @app.route('/soil')
+    def index():
+        return jsonify(soildata.getHelp(soilstuff.facts['hours']))
     return app

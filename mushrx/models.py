@@ -33,3 +33,16 @@ class UserPoint(db.Model):
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
     found_on = db.Column(db.Date)
+    notes = db.Column(db.Text)
+
+
+class UserPolygon(db.Model):
+    __tablename__ = 'user-polygons'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    points = db.Column(db.ARRAY(db.Text))
+    found_on = db.Column(db.Date)
+    notes = db.Column(db.Text)
+
+    def toDict(self):
+       return dict(id=self.id, user_id=self.user_id, points=''.join(self.points), found_on=self.found_on, notes=self.notes)
