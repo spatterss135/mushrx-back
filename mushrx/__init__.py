@@ -9,7 +9,7 @@ def create_app():
 
 
     # config
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('MY_SECRET')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
