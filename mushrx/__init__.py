@@ -3,12 +3,17 @@ from flask import jsonify
 from flask_migrate import Migrate
 from flask_cors import CORS, cross_origin
 import os
+import re
 def create_app():
     app = Flask(__name__)
     CORS(app)
 
 
     # config
+        uri = os.getenv("DATABASE_URL")  # or other relevant config var
+    if uri and uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+    # rest of connection code using the connection string `uri`
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
