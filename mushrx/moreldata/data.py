@@ -1,18 +1,18 @@
-# Already entered
-# from moreldata.response import data
-# from moreldata.soilstuff import facts
-# from seventeenresponse import data
+# # Already entered
+# from . import seventeenresponse
+# # from moreldata.soilstuff import facts
+# # from seventeenresponse import data
 
-# print(type(facts))
+# # print(type(facts))
 
 # import re
-# from flask import (Blueprint, render_template, request, redirect)
+# from flask import (Blueprint, jsonify, render_template, request, redirect)
 # from . import models
 # from sqlalchemy import delete
 # from datetime import datetime
 
 # clean_data = []
-
+# data = seventeenresponse.data
 # for i in range(len(data['features'])):
 #     clean_data.append({'text': data['features'][i]['properties']['marker-createdon'], 
 #                         'latitude': data['features'][i]['geometry']['coordinates'][1], 
@@ -32,12 +32,12 @@
 
     
 
-bp = Blueprint('points', __name__, url_prefix='/new-data')
+# bp = Blueprint('points', __name__, url_prefix='/new-data')
 
-# print(clean_data)
+
 # @bp.route('/')
 # def index():
-#     print('ehh;l')
+
 #     for dp in clean_data:
 #         text = dp['text']
 #         latitude = dp['latitude']
@@ -47,8 +47,8 @@ bp = Blueprint('points', __name__, url_prefix='/new-data')
 #         models.db.session.add(new_point)
 #         models.db.session.commit()
 
-# @bp.route('/delete')
-# def index():
-#     delete(models.Point)
+# # @bp.route('/delete')
+# # def index():
+# #     delete(models.Point)
 
 

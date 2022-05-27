@@ -39,7 +39,6 @@ def create_app():
     # Initial Mushroom data
     # from . import data
     # app.register_blueprint(data.bp)
-    
     from . import soildata
     from . import soilstuff
     @app.route('/soil')

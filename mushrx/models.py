@@ -18,11 +18,11 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(250))
     avatar = db.Column(db.Integer)
-    password = db.Column(db.String(250))
+    password = db.Column(db.LargeBinary)
     children = db.relationship('UserPoint')
 
     def toDict(self):
-       return dict(id=self.id, username=self.username, password=self.password, avatar=self.avatar)
+       return dict(id=self.id, username=self.username,  avatar=self.avatar)
 
 
 class UserPoint(db.Model):
@@ -45,4 +45,4 @@ class UserPolygon(db.Model):
     notes = db.Column(db.Text)
 
     def toDict(self):
-       return dict(id=self.id, user_id=self.user_id, points=''.join(self.points), found_on=self.found_on, notes=self.notes)
+       return dict(id=self.id, user_id=self.user_id, points=self.points, found_on=self.found_on, notes=self.notes)
