@@ -36,9 +36,16 @@ def create_app():
 
     from . import userpolygons
     app.register_blueprint(userpolygons.bp)
+   
+    from . import friends
+    app.register_blueprint(friends.bp)
+   
+   
     # Initial Mushroom data
     # from . import data
     # app.register_blueprint(data.bp)
+    
+    # fake soil data
     from . import soildata
     from . import soilstuff
     @app.route('/soil')

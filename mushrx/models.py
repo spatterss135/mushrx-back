@@ -46,3 +46,13 @@ class UserPolygon(db.Model):
 
     def toDict(self):
        return dict(id=self.id, user_id=self.user_id, points=self.points, found_on=self.found_on, notes=self.notes)
+
+
+class Friends(db.Model):
+    __tablename__='friends'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    friend_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def toDict(self):
+       return dict(id=self.id, user_id=self.user_id, friend_id=self.friend_id)

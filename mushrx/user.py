@@ -33,12 +33,20 @@ def gettingUser():
     if request.method == 'POST':
         username = request.json['username']
         password = request.json['password'].encode('utf-8')
-        
         data = models.User.query.filter_by(username=username).first()
         if data is not None:
 
             if bcrypt.checkpw(password, data.password):
                 return jsonify(data.toDict())
         return jsonify('Failure')
+
+@bp.route('/<ids>', methods=['GET'], strict_slashes=False)
+def gettingFriend(ids):
+    friend_ids = ids.split(',')
+    friends = models.User.query.filter(models.User.id.in_(friend_ids)).all()
+    return jsonify([s.toDict() for s in friends])
+
+
+
       
 
