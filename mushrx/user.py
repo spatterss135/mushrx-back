@@ -46,6 +46,13 @@ def gettingFriend(ids):
     friends = models.User.query.filter(models.User.id.in_(friend_ids)).all()
     return jsonify([s.toDict() for s in friends])
 
+@bp.route('/search/<search>', methods=['GET'], strict_slashes=False)
+def gettingUsers(search):
+    friends = models.User.query.filter(models.User.username.startswith(search)).all() 
+    print(friends)
+    return jsonify([s.toDict() for s in friends])
+
+
 
 
       

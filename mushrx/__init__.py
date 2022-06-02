@@ -39,6 +39,9 @@ def create_app():
    
     from . import friends
     app.register_blueprint(friends.bp)
+
+    from . import messages
+    app.register_blueprint(messages.bp)
    
    
     # Initial Mushroom data

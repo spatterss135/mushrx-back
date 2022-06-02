@@ -53,6 +53,16 @@ class Friends(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     friend_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pending = db.Column(db.Boolean, default=True)
 
     def toDict(self):
-       return dict(id=self.id, user_id=self.user_id, friend_id=self.friend_id)
+       return dict(id=self.id, user_id=self.user_id, friend_id=self.friend_id, pending=self.pending)
+
+class Messages(db.Model):
+    __tablename__ = 'messages'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    friend_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    text = db.Column(db.Text)
+    point_share_id = db.Column(db.Integer)
+    poly_share_id = db.Column(db.Integer)
